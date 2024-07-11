@@ -217,19 +217,8 @@
             ).length;
 
             wordsComp = newwordsComp + reviewWordsComp;
-            updateWordCounts();
-        }
-
-        function updateWordCounts() {
-            const notTestedWords = wordList.filter(word => !word.lastTested).length;
-
-            if (newwordsTobedone > notTestedWords) {
-                newwordsTobedone = notTestedWords;
-                reviewWordsTobedone = totalWordsToday - wordsComp - newwordsTobedone;
-            } else {
-                newwordsTobedone = Math.max(totalNewWords - newwordsComp, 0);
-                reviewWordsTobedone = Math.max(totalReviewWords - reviewWordsComp, 0);
-            }
+            newwordsTobedone = Math.max(totalNewWords - newwordsComp, 0);
+            reviewWordsTobedone = Math.max(totalReviewWords - reviewWordsComp, 0);
             wordsTobedone = newwordsTobedone + reviewWordsTobedone;
 
             document.getElementById('totalTask').innerText = `${totalWordsToday}`;
